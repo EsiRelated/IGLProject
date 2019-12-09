@@ -1,0 +1,11 @@
+extends layout
+block content
+  ul.list-group
+    each coursesList, i in coursesLists
+      if(coursesList.courses.length != 0)
+        li.list-group-item
+          ul.list-group= coursesList.subjectId
+            each course, i in coursesList.courses
+              li.list-group-item= course.courseFile
+                
+            
