@@ -20,7 +20,8 @@ router.post('/addCourse',function(req, res){
   let newCourse = new Course(req.body.ensName,req.body.title,req.body.courseFile);
   for (i = 0; i < req.body.groupSelection.length; i++) {
     console.log(i);
-    CoursesList.findOneAndUpdate({nivId: req.body.nivSelection, groupId: parseInt(req.body.groupSelection[i]), subjectId:req.body.subject},{$push: {courses: newCourse}},function(err){
+    console.log(req.body.nivSelection + req.body.groupSelection[i]);
+    CoursesList.findOneAndUpdate({groupId: req.body.nivSelection + req.body.groupSelection[i], subjectId:req.body.subject},{$push: {courses: newCourse}},function(err){
       err ? console.log('error') : console.log('success');
     });
   }

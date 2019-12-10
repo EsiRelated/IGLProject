@@ -4,15 +4,21 @@ const CourseClass = require('../classes/course.js');
 //course Schema
 
 let courseSchema = mongoose.Schema({
-  ensName:{
-    type: String,
+  publisher:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ens',
+    required: true
+  },
+  subject:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Subject',
     required: true
   },
   title:{
     type: String,
     required: true
-  },
-  courseFile:{ // to change
+   },
+  courseFile:{
     type: String,
     required: true
   }

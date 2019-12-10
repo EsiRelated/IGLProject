@@ -111,6 +111,78 @@ app.get("/", function (req,res){
 });
 
 
+
+
+
+
+
+
+
+
+//testing
+
+let Subject = require('./models/subject.js');
+let Ens = require('./models/ens.js');
+let Person = require('./models/person.js')
+let Niv = require('./models/niv.js')
+
+/*let subjects = [
+  new Subject({name: 'IGL', coef: 5 , credit: 4}),
+  new Subject({name: 'THP', coef: 4 , credit: 3}),
+  new Subject({name: 'ROP', coef: 4 , credit: 3})
+];
+
+Subject.insertMany(subjects,function(err){
+  console.log(err);
+});*/
+
+let ens1 = new Ens({personId: '16/0356',fName:'first',lName:'last',bDay: Date.now(), grade: 'idfk'});
+
+/*let teaching = [] ;
+Subject.find({name: {$in: ['IGL', 'ROP']}},function(err,docs) {
+    if(err){
+      console.log(err);
+    }else{
+      console.log(docs);
+      for(i in docs){
+        teaching.push(docs[i]._id)
+      }
+     console.log(teaching);
+     ens1.teaching = teaching;
+    }
+  //  ens1.save();
+});*/
+//ens1.save();
+/*Person.findOne({personId:'16/0366'},function(err,doc){
+  if(err){
+    console.log(err)
+  }else{
+    Person.findOne({_id: doc._id}).populate({path:'teaching.subjectRef', model:'Subject'}).exec(function(err,doc){
+      console.log(doc);
+    });
+    console.log(doc);
+    }
+});
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*const Student = require('./classes/student.js');
 const Map = require('./classes/map.js');
 const Work = require('./classes/work.js');

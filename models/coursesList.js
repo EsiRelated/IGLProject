@@ -4,12 +4,8 @@ const courseSchema = require('./courseSchema.js');
 // courses list schema
 
 let coursesListSchema = mongoose.Schema({
-  nivId:{
+  groupId:{ // ex: 1CS1
     type: String,
-    required: true
-  },
-  groupId:{
-    type: Number,
     required: true
   },
   subjectId:{
