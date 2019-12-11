@@ -1,5 +1,5 @@
 module.exports = class Person{
-    constructor(fName,lName,birthday,personId){
+    constructor(personId,fName,lName,birthday){
         this.fName = fName;
         this.lName = lName;
         this.birthday = birthday;

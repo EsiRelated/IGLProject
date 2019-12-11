@@ -1,6 +1,7 @@
 module.exports = class Course{
-    constructor(ensName,title,courseFile){
-        this.ensName = ensName;
+    constructor(publisher,subject,title,courseFile){
+        this.publisher = publisher;
+        this.subject = subject;
         this.title = title;
         this.courseFile = courseFile;
     }

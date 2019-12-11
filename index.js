@@ -168,12 +168,15 @@ Subject.find({name: {$in: ['IGL', 'ROP']}},function(err,docs) {
 
 
 
-
-
-
-
-
-
+/*let subjects = [
+  new Subject({niv:'1CS',subjectId: 'IGL', coef: 5 , credit: 4}),
+  new Subject({niv:'2CP',subjectId: 'POO', coef: 5 , credit: 4}),
+];
+console.log(subjects)
+Subject.insertMany(subjects,function(err){
+  console.log(err);
+});
+*/
 
 
 

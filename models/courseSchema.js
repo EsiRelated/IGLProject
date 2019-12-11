@@ -10,8 +10,7 @@ let courseSchema = mongoose.Schema({
     required: true
   },
   subject:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Subject',
+    type: String,
     required: true
   },
   title:{

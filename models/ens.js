@@ -8,7 +8,10 @@ const Person = require('./person.js');
 
 // ens schema
 let ensSchema = mongoose.Schema({
-  grade: {type: String, required: true},
+  grade: {
+    type: String,
+    required: true
+  },
   teaching:[
     {
       subjectId: String, // ex: IGL

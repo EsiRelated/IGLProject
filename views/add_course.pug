@@ -4,22 +4,17 @@ block content
   h1 #{title}
   form(method= 'POST', action='/enss/addCourse')
     #form-group
-      label Niv:
-      select.form-control(name="nivSelection")
-        option 1CS
-        option 2CS
-    #form-group
       label groups :
       br
       .form-check.form-check-inline
-        input#inlineCheckbox1.form-check-input(name='groupSelection',type='checkbox', value=1)
-        label.form-check-label(for='inlineCheckbox1') group 1
+        input#inlineCheckbox1.form-check-input(name='groupSelection',type='checkbox', value='1CS1')
+        label.form-check-label(for='inlineCheckbox1') 1CS1
       .form-check.form-check-inline
-        input#inlineCheckbox2.form-check-input(name='groupSelection',type='checkbox', value=2)
-        label.form-check-label(for='inlineCheckbox2') group 2
+        input#inlineCheckbox2.form-check-input(name='groupSelection',type='checkbox', value='2CP1')
+        label.form-check-label(for='inlineCheckbox2') 2CP1
       .form-check.form-check-inline
-        input#inlineCheckbox3.form-check-input(name='groupSelection',type='checkbox', value=3)
-        label.form-check-label(for='inlineCheckbox3') group 3
+        input#inlineCheckbox3.form-check-input(name='groupSelection',type='checkbox', value='2CP2')
+        label.form-check-label(for='inlineCheckbox3') 2CP2
     #form-group
       label Subject:
       input.form-control(name='subject', type='text')

@@ -1,6 +1,6 @@
 extends layout
 block content
-  h4 group #{group} in niv #{niv} has these courses for #{subject}
+  h4 group #{group} has these courses for #{subject}
   ul.list-group
     if coursesList
       each course, i in coursesList.courses
@@ -8,6 +8,6 @@ block content
         ul.list-group course #{i}
           h1
           li.list-group-item Title : #{course.title}
-          li.list-group-item Ens name: #{course.ensName}
+          li.list-group-item Ens name: #{course.publisher.fName}
           li.list-group-item File: #{course.courseFile}
           

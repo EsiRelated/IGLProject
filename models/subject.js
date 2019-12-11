@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 // subject schema
 
 let subjectSchema = mongoose.Schema({
-  niv: { // might be usefull in validating Ens.teaching.groupsIds 
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Niv'
+  niv: { // might be usefull in validating Ens.teaching.groupsIds
+    type: String,
+    required: true
   },
   subjectId: {
     type: String,
@@ -13,7 +13,6 @@ let subjectSchema = mongoose.Schema({
   },
   fullName:{
     type: String,
-    required: true
   },
   coef: {
     type: Number,
