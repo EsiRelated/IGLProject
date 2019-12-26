@@ -1,8 +1,8 @@
 const Person = require('./person.js');
 
 module.exports = class Ens extends Person{
-    constructor(fName,lName,birthday,id,grade,teaching){
-        super(fName,lName,birthday,id);
+    constructor(personId,fName,lName,birthday,grade,teaching){
+        super(personId,fName,lName,birthday);
         this.grade = grade;
         this.teaching = teaching;
     }

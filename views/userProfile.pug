@@ -1,0 +1,21 @@
+extends layout
+block content
+  h3 your information: 
+  br
+  ul.list-group
+      li.list-group-item full Name:  #{wantedUser.accountOwner.fullName}
+      li.list-group-item id:  #{wantedUser.accountOwner.personId}
+      li.list-group-item birthday:  #{wantedUser.accountOwner.bDay}
+      if wantedUser.accountOwner instanceof Student
+        li.list-group-item group:  #{wantedUser.accountOwner.group}
+      if user
+        if user.id == wantedUser.id
+          if user.accountOwner instanceof Student
+            if (user.accountOwner.allWorks.length != 0)
+              li.list-group-item allWorks: #{wantedUser.accountOwner.allWorks}
+            else 
+              li.list-group-item allWorks: none
+            a.btn.btn-info(href='/students/' + user.username + '/courses', role='button') show my courses
+          else if user.accountOwner instanceof Ens
+            li.list-group-item grade:  #{wantedUser.accountOwner.grade}
+            li.list-group-item teaching:  #{wantedUser.accountOwner.teaching}

@@ -1,0 +1,8 @@
+extends layout
+block content
+  h3 your subjects: 
+  br
+  ul.list-group
+    each subject, i in subjects
+      li.list-group-item 
+        a(href="/subjects/" + user.accountOwner.group + '/' + subject.subjectId)= subject.fullName

@@ -26,4 +26,9 @@ let personSchema = mongoose.Schema({
 });
 
 personSchema.loadClass(PersonClass);
+
+personSchema.virtual('fullName').get(function () {
+  return this.fName + ' ' + this.lName;
+});
+
 let Person = module.exports = mongoose.model('Person', personSchema);

@@ -2,8 +2,15 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const config = require ('./config/database');
+const connectFlash = require('connect-flash');
+const expressMessages = require('express-messages');
+const expressValidator = require('express-validator');
+const ensureAuthenticated = require('./public/js/ensureAuthenticated.js');
 //connecting to database
-mongoose.connect('mongodb://localhost/scolar');
+mongoose.connect(config.database);
 let db = mongoose.connection;
 
 //check connection
@@ -38,11 +45,36 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// passport config
+require('./config/passport.js')(passport);
+
+// express session  middleware
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+
+//express messages
+app.use(connectFlash());
+app.use(function (req, res, next) {
+  res.locals.messages = expressMessages(req, res);
+  next();
+});
+
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
 
 
 // bringing models
 let CoursesList = require('./models/coursesList.js');
-const Course = require('./classes/course.js');
+let Course = require('./models/course.js');
 
 
 
@@ -88,30 +120,29 @@ coursesLists = new CoursesList({
 coursesLists.save();
 */
 
+app.get("*", function(req, res, next){
+  //console.log(req);
+  res.locals.user = req.user || null;
+  console.log("here " + req.user)
+  next();
+})
+
 //routes files
-let enss = require('./routes/enss');
-let students = require('./routes/students');
+let enss = require('./routes/enss.js');
+let students = require('./routes/students.js');
+let users = require('./routes/users.js');
+let subjects = require('./routes/subjects.js');
 app.use('/enss', enss);
 app.use('/students', students);
+app.use('/users', users);
+app.use('/subjects', subjects);
+
 
 
 // Home route
 app.get("/", function (req,res){
-    CoursesList.find({},function(err, coursesLists){
-    if(err){
-      console.log(err);
-    }else{
-      res.render('coursesLists',{
-        title: 'Home page',
-        coursesLists:coursesLists
-      });
-      //console.log(coursesLists);
-    }
-  });
+  res.render('homePage');
 });
-
-
-
 
 
 
@@ -125,19 +156,49 @@ let Subject = require('./models/subject.js');
 let Ens = require('./models/ens.js');
 let Person = require('./models/person.js')
 let Niv = require('./models/niv.js')
+let Student = require('./models/student.js')
+let User = require('./models/user.js')
 
+//let student = new Student({personId: '16/0213',fName:'fname1',lName:'lname1',bDay: Date.now(), group:'1CS1'});
+//student.save()
 /*let subjects = [
-  new Subject({name: 'IGL', coef: 5 , credit: 4}),
-  new Subject({name: 'THP', coef: 4 , credit: 3}),
-  new Subject({name: 'ROP', coef: 4 , credit: 3})
+  new Subject({niv: '1CS',subjectId: 'IGL',fullName: 'IGL', coef: 5 , credit: 4}),
+  new Subject({niv: '1CS',subjectId: 'THP',fullName: 'THP', coef: 4 , credit: 3}),
+  new Subject({niv: '1CS',subjectId: 'ROP',fullName: 'ROP', coef: 4 , credit: 3}),
+  new Subject({niv: '1CS',subjectId: 'SYC1',fullName: 'SYC1', coef: 4 , credit: 3}),
+  new Subject({niv: '1CS',subjectId: 'RES1',fullName: 'RES1', coef: 4 , credit: 3}),
+  new Subject({niv: '1CS',subjectId: 'ORG',fullName: 'ORG', coef: 4 , credit: 3}),
+  new Subject({niv: '1CS',subjectId: 'ANUM',fullName: 'ANUM', coef: 4 , credit: 3})
 ];
 
 Subject.insertMany(subjects,function(err){
   console.log(err);
 });*/
-
-let ens1 = new Ens({personId: '16/0356',fName:'first',lName:'last',bDay: Date.now(), grade: 'idfk'});
-
+/*Subject.find({niv: "1CS"}, function(err, docs) {
+  if(err){
+    console.log(err);
+  } else {
+    let subjectsIds = [];
+    let i = 0;
+    for (i = 0 ;i < docs.length; i++)
+      subjectsIds[i] = docs[i]._id;
+    console.log(subjectsIds)
+    let niv1 = new Niv({
+      nivId: "1CS",
+      subjects: subjectsIds
+    })
+    niv1.save();
+  }
+})
+*/
+//let ens1 = new Ens({personId: '16/0386',fName:'test',lName:'test',bDay: Date.now(), grade: 'idfk'});
+//Ens.findOne({personId:'16/0386'},function(err,doc){
+  //let user1 = new User({email: "g@f.com", password:"1234", accountOwner: doc._id});
+  //user1.save();
+  //User.findOne({email: "g@f.com"}).populate({path: 'accountOwner'}).exec(function(err,doc){
+  //  console.log(doc);
+  //})
+//})
 /*let teaching = [] ;
 Subject.find({name: {$in: ['IGL', 'ROP']}},function(err,docs) {
     if(err){
@@ -177,11 +238,6 @@ Subject.insertMany(subjects,function(err){
   console.log(err);
 });
 */
-
-
-
-
-
 
 
 

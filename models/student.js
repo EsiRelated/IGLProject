@@ -6,7 +6,7 @@ const StudentClass = require('../classes/student.js')
 //bringing models
 const Person = require('./person.js');
 
-// ens schema
+// student schema
 let studentSchema = mongoose.Schema({
   group: {
     type: String, // could be used as a referance
@@ -27,4 +27,8 @@ let studentSchema = mongoose.Schema({
 });
 studentSchema.loadClass(StudentClass);
 
-let Student = module.exports = Person.discriminator('Student',ensSchema);
+studentSchema.virtual('nivId').get(function () {
+  return this.group.slice(0,3);
+});
+
+let Student = module.exports = Person.discriminator('Student',studentSchema);

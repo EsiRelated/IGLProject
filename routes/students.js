@@ -1,28 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose')
-// bringing models
 
+// bringing models
 let CoursesList = require('../models/coursesList.js');
 let Course = require('../models/course.js');
-router.get('/:groupId/:subjectId',function(req, res){
-  CoursesList.findOne({groupId: req.params.groupId, subjectId: req.params.subjectId},function(err, coursesList){
+let User = require('../models/user.js');
+let Niv = require('../models/niv.js');
+
+
+router.get('/:username/courses', function(req, res){
+  User.findOne({username: req.params.username}).populate('accountOwner').exec(function(err, user){
     if(err){
       console.log(err);
-    }else{
-      console.log(coursesList.courses)
-      Course.populate(coursesList.courses,{path: "publisher",select:"fName", model: 'Ens'},function(err,courses){
-        console.log("in" + coursesList);
-        res.render('coursesListView',{
-          coursesList: coursesList,
-          niv: req.params.nivId,
-          group: req.params.groupId,
-          subject: req.params.subjectId
-        });
+    } else if (user._id.toString() == req.user._id.toString()){
+      Niv.findOne({nivId: user.accountOwner.nivId}).populate('subjects').exec(function (err, nivFound) {
+        if(err){
+          console.log(err)
+        } else if (nivFound) {
+          res.render('subjectsView', {
+            user: user,
+            subjects: nivFound.subjects
+          });
+        }
       });
-      console.log("out" + coursesList);
+    } else {
+      req.flash('danger','you can not do that buddy');
+      res.redirect('/');
     }
-  })
+  });
 });
 
 
