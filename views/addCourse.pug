@@ -1,31 +1,20 @@
-extends layout
+extends layout2
 
 block content
+  script(type='text/javascript').
+    let local_teaching = !{JSON.stringify(teaching)}
   h1 Add course
   form(method= 'POST', action='/enss/addCourse')
-    #form-group
-      label groups :
-      br
-      .form-check.form-check-inline
-        input#inlineCheckbox1.form-check-input(name='groupSelection',type='checkbox', value='1CS1')
-        label.form-check-label(for='inlineCheckbox1') 1CS1
-      .form-check.form-check-inline
-        input#inlineCheckbox2.form-check-input(name='groupSelection',type='checkbox', value='2CP1')
-        label.form-check-label(for='inlineCheckbox2') 2CP1
-      .form-check.form-check-inline
-        input#inlineCheckbox3.form-check-input(name='groupSelection',type='checkbox', value='2CP2')
-        label.form-check-label(for='inlineCheckbox3') 2CP2
-    #form-group
-      label Subject:
-      input.form-control(name='subject', type='text')
-    #form-group
-      label Ens Name:
-      input.form-control(name='ensName', type='text')
-    #form-group
+    .form-group
+      label(for='subjectSelection') Subject selection:
+      select#subjectSelection.form-control(name="subject")
+    .form-group#groupSelection
+    .form-group
       label Title:
       input.form-control(name='title', type='text')
-    #form-group
+    .form-group
       label Course file:
       input.form-control(name='courseFile', type='text')
     br
     input.btn.btn-primary(type='submit',value='Submit')
+  script(src="/js/addCourse.js")

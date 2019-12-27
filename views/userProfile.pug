@@ -1,4 +1,4 @@
-extends layout
+extends layout2
 block content
   h3 your information: 
   br
@@ -15,7 +15,8 @@ block content
               li.list-group-item allWorks: #{wantedUser.accountOwner.allWorks}
             else 
               li.list-group-item allWorks: none
-            a.btn.btn-info(href='/students/' + user.username + '/courses', role='button') show my courses
+            a.btn.btn-info(href='/students/courses', role='button') Show my courses
           else if user.accountOwner instanceof Ens
             li.list-group-item grade:  #{wantedUser.accountOwner.grade}
             li.list-group-item teaching:  #{wantedUser.accountOwner.teaching}
+            a.btn.btn-info(href='/enss/addCourse', role='button') Add a course

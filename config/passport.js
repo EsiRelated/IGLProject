@@ -18,7 +18,7 @@ module.exports = function(passport){
       // match password
       bcryptjs.compare(password, user.password, function(err, isMatch){
         if(!isMatch){
-          return done(null, false, {message:"user not found"});
+          return done(null, false, {message:"wrong password"});
         } else {
           return done(null, user);
         }

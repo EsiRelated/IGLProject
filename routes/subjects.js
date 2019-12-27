@@ -13,15 +13,20 @@ router.get('/:groupId/:subjectId', ensureAuthenticated, function(req, res){
   CoursesList.findOne({groupId: req.params.groupId, subjectId: req.params.subjectId}).populate('courses').exec(function(err, coursesList){
     if(err){
       console.log(err);
-    }else if (coursesList){
-      Course.populate(coursesList.courses,{path: "publisher",select:"fName lName", model: 'Ens'},function(err,courses){
-        res.render('coursesListView',{
-          coursesList: coursesList,
-          niv: req.params.nivId,
-          group: req.params.groupId,
-          subject: req.params.subjectId
+    } else {
+      if (coursesList){
+        Course.populate(coursesList.courses,{path: "publisher",select:"fName lName", model: 'Ens'},function(err,courses){
+          res.render('coursesListView',{
+            coursesList: coursesList,
+            niv: req.params.nivId,
+            group: req.params.groupId,
+            subject: req.params.subjectId
+          });
         });
-      });
+      } else {
+        req.flash('danger','no courses yet for ' + req.params.subjectId)
+        res.redirect('/students/courses')
+      }
     }
   })
 });

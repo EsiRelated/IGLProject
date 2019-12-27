@@ -34,7 +34,9 @@ let Group = require('../models/group.js')
 
 // adding  a course form
 router.get('/addCourse', ensureAuthenticated, ensureEnsType, function(req, res){
-  res.render('addCourse', {});
+  res.render('addCourse', {
+    teaching: req.user.accountOwner.teaching
+  });
 });
 
 // adding a course process
@@ -52,7 +54,6 @@ router.post('/addCourse', ensureAuthenticated, ensureEnsType, function(req, res)
   for (let group of groupSelection) {
     let query = {groupId:group, subjectId:req.body.subject}
     CoursesList.findOneAndUpdate(query,{$push: {courses: newCourse._id}},function(err,doc){
-      console.log("HHH "+ newCourse._id)
       if (err){
         console.log(err);
       } else {
@@ -86,7 +87,7 @@ router.post('/addCourse', ensureAuthenticated, ensureEnsType, function(req, res)
   res.redirect('/users/'+req.user.username);
 });
 
-//only enss can add a course
+// Ensures that only enss can add a course
 function ensureEnsType(req, res, next){
   console.log('im in')
   if(req.user.accountOwner instanceof Ens){
