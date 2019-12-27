@@ -12,7 +12,7 @@ let groupSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'CourseList',
   }],
-  studentIds:[{type: String}] // ex: 17/0231
+  studentIds:[{type: String}] // ex: 17-0231
 });
 
 // niv as a virtual

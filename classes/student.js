@@ -17,6 +17,5 @@ module.exports = class Student extends Person{
             else
                 couple.getValue().push(work);
     }
-}
-
 */
+}

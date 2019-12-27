@@ -22,6 +22,6 @@ let courseSchema = mongoose.Schema({
     required: true
   }
 });
-courseSchema.loadClass(CourseClass);
+//courseSchema.loadClass(CourseClass);
 
 module.exports = courseSchema
