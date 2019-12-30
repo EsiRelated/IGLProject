@@ -8,7 +8,7 @@ const config = require ('./config/database');
 const connectFlash = require('connect-flash');
 const expressMessages = require('express-messages');
 const expressValidator = require('express-validator');
-const ensureAuthenticated = require('./public/js/ensureAuthenticated.js');
+
 //connecting to database
 mongoose.connect(config.database);
 let db = mongoose.connection;

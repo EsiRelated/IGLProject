@@ -56,11 +56,11 @@ router.get('/login', function(req, res){
 
 // login process
 router.post('/login', function(req, res, next){
-  passport.authenticate('local', function(err, user){
+  passport.authenticate('local', function(err, user, info){
     if(err){
       return next(err);
     } else if(!user){
-      req.flash('danger','something wrong happened')
+      req.flash('danger',info.message)
       return res.redirect('/users/login');
     }
     req.logIn(user, function(err){
@@ -83,17 +83,23 @@ router.get('/logout', function(req, res, next){
 
 
 // profile route
-router.get('/:username', function(req, res){
-  User.findOne({username:req.params.username}).populate('accountOwner').exec(function(err, user){
+router.get('/:username', function(req, res, next){
+  User.findOne({username:req.params.username}).populate('accountOwner').exec(function(err, doc){
     if(err){
       console.log(err)
     } else {
-      res.render('userProfile',{
-        wantedUser: user,
-        Student: Student,
-        Ens: Ens
-      });
-    }
+        if (doc) {
+          res.render('userProfile',{
+            wantedUser: doc,
+            Student: Student,
+            Ens: Ens
+          });
+        } else {
+            console.log("here")
+            req.flash('danger','No such user')
+            res.redirect('/')
+          }
+        }
   });
 });
 

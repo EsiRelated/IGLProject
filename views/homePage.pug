@@ -2,7 +2,10 @@ extends layout2
 
 block content
     h1 Welcome to scolar
-    h3 please log in
-    a.btn.btn-info(href='/users/login', role='button') login
-    
+    if !user
+      h3 please log in
+      a.btn.btn-info(href='/users/login', role='button') login
+    else
+      h3 You are logged in
+      a.btn.btn-info(href='/users/'+user.username, role='button') Show profile
     
