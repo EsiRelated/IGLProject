@@ -19,9 +19,10 @@ subjectSelection.addEventListener("change", function(){
   groupSelection.innerHTML = "";
   let label = document.createElement("LABEL")
   label.setAttribute("for","groupSelection");
-  label.innerText = "group selection:";
+  label.setAttribute("class","col-sm-2 col-form-label");
+  label.innerText = "group selection :";
   groupSelection.appendChild(label);
-  groupSelection.appendChild(document.createElement("BR"));
+  //groupSelection.appendChild(document.createElement("BR"));
   let found = false;
   let i = 0;
   let groups = [];
@@ -58,7 +59,6 @@ function createCheckBox(number,value) {
   div.appendChild(input);
   div.appendChild(label);
   return div;
-
 }
 /*<div class="form-check form-check-inline">
   <input class="form-check-input" id="inlineCheckbox1" name="groupSelection" type="checkbox" value="1CS1" />

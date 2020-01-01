@@ -1,22 +1,24 @@
-extends layout2
+extends layout3
 block content
-  h3 your information: 
+  h3 Profile 
   br
-  ul.list-group
-      li.list-group-item full Name:  #{wantedUser.accountOwner.fullName}
-      li.list-group-item id:  #{wantedUser.accountOwner.personId}
-      li.list-group-item birthday:  #{wantedUser.accountOwner.bDay}
-      if wantedUser.accountOwner instanceof Student
-        li.list-group-item group:  #{wantedUser.accountOwner.group}
-      if user
-        if user.id == wantedUser.id
-          if user.accountOwner instanceof Student
-            if (user.accountOwner.allWorks.length != 0)
-              li.list-group-item allWorks: #{wantedUser.accountOwner.allWorks}
-            else 
-              li.list-group-item allWorks: none
-            a.btn.btn-info(href='/students/courses', role='button') Show my courses
-          else if user.accountOwner instanceof Ens
-            li.list-group-item grade:  #{wantedUser.accountOwner.grade}
-            li.list-group-item teaching:  #{wantedUser.accountOwner.teaching}
-            a.btn.btn-info(href='/enss/addCourse', role='button') Add a course
+  .container
+    li.list-group-item full Name :  #{wantedUser.accountOwner.fullName}
+    li.list-group-item id :  #{wantedUser.accountOwner.personId}
+    li.list-group-item birthday :  #{wantedUser.accountOwner.bDay.toDateString()}
+    if wantedUser.accountOwner instanceof Student
+      li.list-group-item group :  #{wantedUser.accountOwner.group}
+    if user
+      if user.id == wantedUser.id
+        if user.accountOwner instanceof Student
+          if (user.accountOwner.allWorks.length != 0)
+            li.list-group-item allWorks: #{wantedUser.accountOwner.allWorks}
+          else 
+            li.list-group-item allWorks : none
+          br
+          a.btn.btn-info(href='/students/courses', role='button') Show my courses
+        else if user.accountOwner instanceof Ens
+          li.list-group-item grade :  #{wantedUser.accountOwner.grade}
+          li.list-group-item teaching :  #{wantedUser.accountOwner.teaching}
+          br
+          a.btn.btn-info(href='/enss/addCourse', role='button') Add a course

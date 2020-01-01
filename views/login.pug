@@ -1,13 +1,14 @@
-extends layout2
+extends layout3
 
 block content
   h1 LOGIN
   form(method= 'POST', action='/users/login')
     #form-group
-      label username:
-      input.form-control(name='username', type='text')
-    #form-group
-      label password:
-      input.form-control(name='password', type='password')
+      label.sr-only(for='inputUsername') Username
+      input#inputUsername.form-control(name='username', type='text', placeholder='Username', required='', autofocus='')
     br
-    input.btn.btn-primary(type='submit',value='Submit')
+    #form-group
+      label.sr-only(for='inputPassword') password
+      input#inputPassword.form-control(name='password', type='password', placeholder='Password', required='')
+    br
+    input.btn.btn-primary(type='submit',value='Login')
