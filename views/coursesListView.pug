@@ -1,13 +1,14 @@
-extends layout2
+extends layout3
+
 block content
   h4 group #{group} has these courses for #{subject}
-  ul.list-group
-    if coursesList
-      each course, i in coursesList.courses
+  br
+  if coursesList
+    each course, i in coursesList.courses
+      ul.list-group
         h1
-        ul.list-group course #{i}
-          h1
-          li.list-group-item Title : #{course.title}
-          li.list-group-item Ens name: #{course.publisher.fullName}
-          li.list-group-item File: #{course.courseFile}
+        li.list-group-item Title : #{course.title}
+        li.list-group-item Published by Ens : #{course.publisher.fullName}
+        a(href="/students/files/" + course.courseFile, color="red") Course file
+      br
           

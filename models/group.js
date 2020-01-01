@@ -6,7 +6,6 @@ let groupSchema = mongoose.Schema({
   groupId:{ //ex: 1CS1 // might also be used as a referece to Niv
     type: String,
     required: true,
-    unique: true
   },
   coursesLists:[{
     type: mongoose.Schema.Types.ObjectId,
