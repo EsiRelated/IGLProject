@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    title scolar
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Style des icons
+    link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='/bower_components/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/layout.css', type='text/css')
+    link(rel='stylesheet', href='/css/cssNR/layoutNR.css', type='text/css')
+    // icon de la page
+    link(rel='SHORTCUT ICON', href='./avatar.png')
+    // ********
+  body
+      #row
+        ul.main-nav
+          li.nav-item.active
+            a.nav-link(href='/')
+              span  Page d'acceuil
+              |    Acceuil 
+          if !user
+            li
+              a(href='/users/login')
+                i.fa.fa-lock
+                  span  Cliquer ici pour vous connecter
+                  |   CONNEXION
+          else 
+            li
+              a(href='/users/logout')
+                i.fa.fa-lock
+                  span  Cliquer ici pour vous deconnecter
+                  |   DECONNEXION  
+          li
+            a(href='')
+              i.fa.fa-question-circle-o
+              span  Obtenir de l'aide
+              |   AIDE
+          li
+            a(href='')
+              i.fa.fa-info-circle
+              span  Lire à propos de nous
+              |   A PROPOS
+      //#acceuil
+        | scolarité
+      #toggle-btn(onclick='toggleSidebar(this)')
+        span(style="background-color:#fff")
+        span(style="background-color:#fff")
+        span(style="background-color:#fff")
+      br
+      .container
+        != messages('message', locals)
+        br
+        #content
+          //.box
+          block content
+        br
+        //script.
+            function toggleSidebar(ref){
+              ref.classlist.toggle('active');
+              document.getElementById('sidebar').classlist.toggle('active')
+            }

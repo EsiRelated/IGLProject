@@ -1,11 +1,12 @@
-extends layout3
-
+extends layoutNR
 block content
-    h1 Welcome to scolar
-    if !user
-      h3 please log in
-      a.btn.btn-info(href='/users/login', role='button') login
-    else
-      h3 You are logged in
-      a.btn.btn-info(href='/users/'+user.username, role='button') Show profile
+    link(rel='stylesheet', href='/css/cssNR/home.css', type='text/css')
+    #acceuil
+      h1 Bienvenue
+      if !user
+        h3 veuillez vous connecter
+        a.btn.btn-info(href='/users/login', role='button') Connéxion
+      else
+        h3 vous êtes connecté
+        a.btn.btn-info(href='/users/'+user.username, role='button') Voir votre profil
     

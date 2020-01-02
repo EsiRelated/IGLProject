@@ -1,14 +1,13 @@
-extends layout3
+extends layoutNR
 
 block content
-  h4 group #{group} has these courses for #{subject}
+  h3(style="text-decoration: underline;") Le groupe #{group} a ces coures pour #{subject} 
   br
   if coursesList
     each course, i in coursesList.courses
-      ul.list-group
-        h1
-        li.list-group-item Title : #{course.title}
-        li.list-group-item Published by Ens : #{course.publisher.fullName}
-        a(href="/students/files/" + course.courseFile, color="red") Course file
-      br
-          
+      .box
+        ul.list-group
+          li.list-group-item Titre : #{course.title}
+          li.list-group-item Publier par Ens : #{course.publisher.fullName}
+          a(href="/students/files/" + course.courseFile, style="text-decoration: underline;font-weight: bold;") Ouvrir le fichier
+        br

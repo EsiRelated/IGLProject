@@ -1,14 +1,15 @@
-extends layout3
+extends layoutNR
 
 block content
-  h1 LOGIN
-  form(method= 'POST', action='/users/login')
-    #form-group
-      label.sr-only(for='inputUsername') Username
-      input#inputUsername.form-control(name='username', type='text', placeholder='Username', required='', autofocus='')
-    br
-    #form-group
-      label.sr-only(for='inputPassword') password
-      input#inputPassword.form-control(name='password', type='password', placeholder='Password', required='')
-    br
-    input.btn.btn-primary(type='submit',value='Login')
+  .box
+    h2 CONNEXION
+    form(method= 'POST', action='/users/login')
+      #form-group
+        label.sr-only(for='inputUsername') Username
+        input#inputUsername.form-control(name='username', type='text', placeholder="Nom d'utilisateur", required='', autofocus='')
+      br
+      #form-group
+        label.sr-only(for='inputPassword') password
+        input#inputPassword.form-control(name='password', type='password', placeholder='Mot de pass', required='')
+      br
+      input.btn.btn-primary(type='submit',value='CONNECTER')

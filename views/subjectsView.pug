@@ -1,8 +1,16 @@
-extends layout3
-block content
-  h3 your subjects: 
+extends layoutNR
+block content 
   br
-  ul.list-group
+  //.box
+    ul.list-group
+      each subject, i in subjects
+        li.list-group-item 
+          a(href="/subjects/" + user.accountOwner.group + '/' + subject.subjectId)= subject.fullName
+  .box
     each subject, i in subjects
-      li.list-group-item 
-        a(href="/subjects/" + user.accountOwner.group + '/' + subject.subjectId)= subject.fullName
+      a(href="/subjects/" + user.accountOwner.group + '/' + subject.subjectId)
+        button.button(style='vertical-align:middle')
+          span
+            i= subject.fullName
+        br
+  

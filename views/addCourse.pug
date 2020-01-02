@@ -1,20 +1,20 @@
-extends layout3
+extends layoutNR
 
 block content
-  script(type='text/javascript').
-    let local_teaching = !{JSON.stringify(teaching)}
-  h1 Add course
-  br
-  form(method= 'POST', action='/enss/addCourse', enctype="multipart/form-data")
-    .form-group.row
-      label.col-sm-2.col-form-label(for='subjectSelection') Subject selection :
-      select#subjectSelection.form-control.col-sm-10(name="subject")
-    .form-group.row#groupSelection
-    .form-group.row
-      label.col-sm-2.col-form-label Title :
-      input.form-control.col-sm-10(name='title', type='text')
-    .form-group.row
-      label.col-sm-2.col-form-label(for='fileInput') course file : 
-      input#fileInput.form-control-file.col-sm-10(type='file', name='file')
-    input.btn.btn-primary(type='submit',value='Submit')
-  script(src="/js/addCourse.js")
+    script(type='text/javascript').
+      let local_teaching = !{JSON.stringify(teaching)}
+    h2 Ajouter un cour
+    br
+    form(method= 'POST', action='/enss/addCourse', enctype="multipart/form-data")
+      .form-group.row
+        label.col-sm-2.col-form-label(for='subjectSelection') Selection module :
+        select#subjectSelection.form-control.col-sm-10(name="subject")
+      .form-group.row#groupSelection
+      .form-group.row
+        label.col-sm-2.col-form-label Titre :
+        input.form-control.col-sm-10(name='title', type='text')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='fileInput') fichier : 
+        input#fileInput.form-control-file.col-sm-10(type='file', name='file')
+      input.btn.btn-primary(type='submit',value='publier')
+    script(src="/js/addCourse.js")
