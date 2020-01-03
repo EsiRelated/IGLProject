@@ -7,7 +7,7 @@ let courseSchema = mongoose.Schema({
   publisher:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ens',
-    required: true
+    //required: true
   },
   subject:{
     type: String,
