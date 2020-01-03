@@ -6,12 +6,12 @@ To run the application in a server locally :
 
   - Change the url in "config/database.js" from "mongodb://mongo/scolar" to "mongodb://127.0.0.1:27017/scolar".
 
-  - Run the command "npm start" in the rout folder after starting a mongod service
+  - Run the command "npm start" in the root folder after starting a mongod service
 
  
 
 To run the application using Docker and docker-compose:
 
-  - Run the command "docker-compose up" in the rout folder
+  - Run the command "docker-compose up" in the root folder
 
   - That's it. (Docker will install all the images and the dependencies needed and set everything up for you)
